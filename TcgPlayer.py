@@ -13,7 +13,7 @@ class TcgPlayer:
 		self.crit = []
 		self.cardList = []
 		self.folderName = 'C:\\Users\\Owner\\Documents\\GitHub\\Dump-TCG-Player\\TCGPlayer Images'
-		self.setLstDir = 'C:\\Users\\Owner\\Documents\\GitHub\\Dump-TCG-Player'
+		self.setLstDir = 'C:\\Users\\Owner\\Documents\\GitHub\\Dump-TCG-Player\\'
 		self.fname = 'tcgplayer.csv'
 		self.links = []
 		self.testLimit = None
