@@ -12,11 +12,18 @@ class TcgPlayer:
 		self.results = []
 		self.crit = []
 		self.cardList = []
-		self.folderName = 'TCGPlayer Images'
+		self.folderName = 'C:\\Users\\Owner\\Documents\\GitHub\\Dump-TCG-Player\\TCGPlayer Images'
+		self.setLstDir = 'C:\\Users\\Owner\\Documents\\GitHub\\Dump-TCG-Player'
+		self.fname = 'tcgplayer.csv'
 		self.links = []
 		self.testLimit = None
 		#masterCrits gets reset everytime critExtract method is called
 		self.masterCrits = set()
+	def setDir(self, nDir, changeBase = False):
+		if changeBase:
+			self.folderName = nDir
+		else:
+			self.folderName = "C:\\Users\\Owner\\Documents\\GitHub\\Dump-TCG-Player\\" + nDir
 	def main(self):
 		self.cardList = []
 		self.results = []
@@ -46,7 +53,7 @@ class TcgPlayer:
 		self.results.append(self.headerFix(mCrits))
 		for cards in self.cardList:
 			self.results.append(S_format(cards).d_sort(mCrits))
-		w_csv(self.results, 'tcgplayer.csv')
+		w_csv(self.results, self.setLstDir + self.fname)
 		self.browser.close()
 		return self.results
 	def link_collector(self):
