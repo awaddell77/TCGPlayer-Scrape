@@ -46,6 +46,7 @@ class TcgPlayer:
 
 	def mainCust(self):
 		for i in self.links:
+			print("Processing {0}".format(str(i)))
 			self.splitter(i)
 		self.critExtract()
 		#sets the header
