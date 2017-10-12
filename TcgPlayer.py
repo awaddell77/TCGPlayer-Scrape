@@ -101,5 +101,11 @@ class TcgPlayer:
 
 
 if __name__ == "__main__":
-	mInst = TcgPlayer(sys.argv[1], sys.argv[2])
-	mInst.main()
+	if sys.argv[1] == '-gen':
+		#general scrape (can be used for all games)
+		mInst = TcgPlayer(sys.argv[2], sys.argv[3])
+		mInst.main()
+	elif sys.argv[1] == '-cfv':
+		from TcgCFV import *
+		mInst = TcgCfv("Cardfight Vanguard", sys.argv[2])
+		mInst.main()
