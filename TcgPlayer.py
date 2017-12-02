@@ -35,10 +35,11 @@ class TcgPlayer:
 			#gets links for the entire set
 			time.sleep(2)
 			self.links.extend(self.link_collector())
+			end = self.browser.driver.execute_script("return document.getElementsByClassName('nextPage')[0] == null")
 			count += 1
 			if self.testLimit is not None and count > self.testLimit:
 				break
-			if self.browser.driver.execute_script("return document.getElementsByClassName('nextPage')[0].getAttribute('disabled')") == "disabled":
+			if end or self.browser.driver.execute_script("return document.getElementsByClassName('nextPage')[0].getAttribute('disabled')") == "disabled":
 				break
 			else:
 				self.browser.driver.execute_script("document.getElementsByClassName('nextPage')[0].click()")
@@ -62,7 +63,7 @@ class TcgPlayer:
 		#browser.go_to(x)
 		time.sleep(2)
 		test = self.browser.source() #test is used as the identifier because I don't want to find and replace for it in this function
-		links = ['http://shop.tcgplayer.com' + S_format(str(test.find_all('h2', {'class':'product__name'})[i].a)).linkf('<a href=') for i in range(0, len(test.find_all('h2', {'class':'product__name'})))]
+		links = ['http://shop.tcgplayer.com' + S_format(str(test.find_all('a', {'class':'product__name'})[i])).linkf('href=') for i in range(0, len(test.find_all('a', {'class':'product__name'})))]
 		return links
 
 
@@ -104,6 +105,10 @@ if __name__ == "__main__":
 	if sys.argv[1] == '-gen':
 		#general scrape (can be used for all games)
 		mInst = TcgPlayer(sys.argv[2], sys.argv[3])
+		mInst.main()
+	elif sys.argv[1] == "-dragoborne":
+		from TcgDragoborne import *
+		mInst = TcgDragoborne("Dragoborne", sys.argv[2])
 		mInst.main()
 	elif sys.argv[1] == '-cfv':
 		from TcgCFV import *
