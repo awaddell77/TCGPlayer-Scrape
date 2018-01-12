@@ -97,6 +97,8 @@ class TcgPlayer:
 
 	def headerFix(self, x):
 		return x
+	def rarityMap(self, x):
+		pass
 
 
 
@@ -113,4 +115,8 @@ if __name__ == "__main__":
 	elif sys.argv[1] == '-cfv':
 		from TcgCFV import *
 		mInst = TcgCfv("Cardfight Vanguard", sys.argv[2])
+		mInst.main()
+	elif sys.argv[1] == '-dbs':
+		from TcgDBS import *
+		mInst = TcgDbs("Dragon Ball Super", sys.argv[2])
 		mInst.main()

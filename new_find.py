@@ -1,3 +1,6 @@
+import csv
+from soupclass8 import r_csv, w_csv
+
 def new_find(new, old):
 	new_f = r_csv(new)
 	old_f = r_csv(old)
