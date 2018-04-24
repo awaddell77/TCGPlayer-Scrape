@@ -82,6 +82,8 @@ class TcgPlayer:
 		self.descriptorGrab(rows, d)
 		dwnld_obj = Im_dwnld(self.folderName)
 		dwnld_obj.i_main([image_link])
+		d['Url'] = str(x)
+
 		self.cardList.append(d)
 
 	def descriptorGrab(self, rows, d):

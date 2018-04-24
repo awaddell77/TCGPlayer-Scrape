@@ -10,6 +10,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 '''VERSION NOTES:
 2/17/2016
@@ -165,10 +166,14 @@ class S_base(object):
 
 
 class Sel_session(object):
-    def __init__(self, url='http://www.fsf.org/', *args):
+    def __init__(self, url='http://www.fsf.org/',driver = 'C:\\Program Files\\Mozilla FirefoxSel\\firefox.exe', *args):
         self.url = url
         self.args = args
-        self.driver = webdriver.Firefox()
+        self.binarypath = FirefoxBinary(driver)
+        self.driver = webdriver.Firefox(firefox_binary=self.binarypath)
+
+        
+
 
     def start(self):
         self.driver.get(self.url)
